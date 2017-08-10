@@ -1,0 +1,53 @@
+<%- model_class = Desire -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %> - <%= link_to t('.new', :default => t("helpers.links.new")),
+              new_desire_path,
+              :class => 'btn btn-primary' %></h1>
+</div>
+<% if (@desires.nil?) || (@desires.empty?) %>
+  <h3>Você não possuí nenhum Pedido. <%= link_to 'Crie um Agora!',new_desire_path %></h3>
+<% else %>
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:action) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:status) %></th>
+      <th><%= model_class.human_attribute_name(:company_id) %></th>
+      <th><%= model_class.human_attribute_name(:img1) %></th>
+      <th><%= model_class.human_attribute_name(:img2) %></th>
+      <th><%= model_class.human_attribute_name(:img3) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @desires.each do |desire| %>
+      <tr>
+        <td><%= link_to desire.id, desire_path(desire) %></td>
+        <td><%= desire.title %></td>
+        <td><%= desire.action %></td>
+        <td><%= desire.description %></td>
+        <td><%= desire.status %></td>
+        <td><%= desire.company.name %></td>
+        <td><%= image_tag(desire.img1.thumb) if desire.img1 %></td>
+        <td><%= image_tag(desire.img2.thumb) if desire.img2 %></td>
+        <td><%= image_tag(desire.img3.thumb) if desire.img3 %></td>
+        <td>
+          <%= link_to t('.show', :default => t("helpers.links.show")),
+                      desire_path(desire), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_desire_path(desire), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      desire_path(desire),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% end %>

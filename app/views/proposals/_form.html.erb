@@ -1,0 +1,14 @@
+<%= simple_form_for @proposal, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :message %>
+  <%= f.input :status %>
+  <%= f.input :notes %>
+  <%= f.input :desire_id %>
+  <%= f.input :img1 %>
+  <%= f.input :img2 %>
+  <%= f.input :img3 %>
+  <%= f.input :user_id %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                proposals_path, :class => 'btn btn-default' %>
+<% end %>
