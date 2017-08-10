@@ -6,7 +6,12 @@ class ProposalsController < ApplicationController
 	end
 
 	def create
+    desire = params[:proposal][:desire_id]
+    user = Desire.find(desire)
+    params[:proposal][:user_id] = user.user_id
 		@proposal = Proposal.create(proposal_params)
+    binding.pry
+    #@proposal(:desire_id)
 		respond_with @proposal
 	end
 
