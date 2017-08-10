@@ -31,9 +31,9 @@
         <td><%= desire.description %></td>
         <td><%= desire.status %></td>
         <td><%= desire.company.name %></td>
-        <td><%= image_tag(desire.img1.thumb) if desire.img1 %></td>
-        <td><%= image_tag(desire.img2.thumb) if desire.img2 %></td>
-        <td><%= image_tag(desire.img3.thumb) if desire.img3 %></td>
+        <td><%= image_tag(desire.img1_url(:thumbnail), :alt => "Imagem") %></td>
+        <td><%= image_tag(desire.img2_url(:thumbnail), :alt => "Imagem") %></td>
+        <td><%= image_tag(desire.img3_url(:thumbnail), :alt => "Imagem") %></td>
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show")),
                       desire_path(desire), :class => 'btn btn-default btn-xs' %>

@@ -1,15 +1,17 @@
-<%= simple_form_for @desire, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :title, placeholder: 'Ex: Post Dia das Mães!', label: 'Titulo Postagem:'%>
-  <%= f.input :action, collection: ["Divulgar Promoção","Divulgar Produto", "Divulgar Serviço","Utilizar para o Sistema Luqy","Institucional"], include_blank: false, label: 'Objetivo:'%>
-  <%= f.input :description, maxlength: "120", placeholder: 'Breve descrição da arte que Deseja!', label: 'Descrição:' %>
-  <%= f.association :company, include_blank: false, label: "Empresa:", collection: Company.where(user_id: current_user.id) %>
+<%= simple_form_for @desire do |f| %>
+  <%= f.input :title, placeholder: 'Ex: Post Dia das Mães!', label: 'Titulo Postagem:', :input_html => {:style => 'width: 500px', maxlength: "100"}%>
+  <%= f.input :action, collection: ["Divulgar Promoção","Divulgar Produto", "Divulgar Serviço","Utilizar para o Sistema Luqy","Institucional"], include_blank: false, label: 'Objetivo:', :input_html => {:style => 'width: 500px', maxlength: "100"}%>
+  <%= f.input :description, maxlength: "120", placeholder: 'Breve descrição da arte que Deseja!', label: 'Descrição:', hint: 'Limite de 100 Caracteres!', :input_html => {:style => 'width: 500px', maxlength: "100"}%>
+  <%= f.association :company, include_blank: false, label: "Empresa:", collection: Company.where(user_id: current_user.id), :input_html => {:style => 'width: 500px', maxlength: "100"} %>
   <%= f.label 'Imagens de Referência:' %>
-  <%= f.input :img1 %>
-  <%= f.input :img2 %>
-  <%= f.input :img3 %>
+  <%= f.file_field :img1%><br>
+  <%= f.file_field :img2%><br>
+  <%= f.file_field :img3%><br>
+  <p>Caso não tenha nenhuma imagem de referencia, não enviar nada!</p>
   <%= f.hidden_field :user_id, :value => current_user.id %>
-
+<br><br>
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 desires_path, :class => 'btn btn-default' %>
 <% end %>
+<p>Lembrar que no admin enviar a foto da Empresa</p>

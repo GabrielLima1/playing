@@ -7,9 +7,9 @@ class CreateDesires < ActiveRecord::Migration[5.0]
       t.string :status, default: "Em Análise"
       t.references :user, foreign_key: true
       t.references :company, foreign_key: true
-      t.string :img1, default: "Não Enviada"
-      t.string :img2, default: "Não Enviada"
-      t.string :img3, default: "Não Enviada"
+      t.string :img1, default: "Nao_Enviada"
+      t.string :img2, default: "Nao_Enviada"
+      t.string :img3, default: "Nao_Enviada"
 
       t.timestamps
     end

@@ -1,5 +1,5 @@
 <%= simple_form_for @company do |f| %>
-  <%= f.input :name, placeholder: 'Ex: Facebook L.D.T.A.', label: 'Nome de sua Empresa:', :input_html => {:style => 'width: 500px'}%>
+  <%= f.input :name, placeholder: 'Ex: Facebook L.D.T.A.',label: 'Nome de sua Empresa:', :input_html => {:style => 'width: 500px'}%>
   <%= f.input :description, placeholder: 'Breve descrição sobre sua Empresa!', label: 'Descrição:', hint: 'Limite de 100 Caracteres!', :input_html => {:style => 'width: 500px', maxlength: "100"} %>
   <label>Logo da Empresa</label>
   <%= f.file_field :logo%>

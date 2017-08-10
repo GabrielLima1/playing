@@ -1,21 +1,5 @@
-<h1>Olá <b><%=@current_user.name%></b></h1>
-<% if current_user %>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-       <%if %>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ações <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><%= link_to 'Ver Empresa', companies_path %></li>
-            <li><%= link_to 'Ver Pedidos', desires_path %></li>
-            <li role="separator" class="divider"></li>
-            <li><%= link_to 'Cadastrar Empresa', new_company_path %></li>
-          </ul>
-        </li>
-      </ul>
-      <%end%>
-      <a><%= link_to 'Logout', destroy_user_session_path, class: 'btn btn-default navbar-btn',:method => :delete%></a>
-      <%else%>
-      <a><%= link_to 'Login', new_user_session_path, class: 'btn btn-default navbar-btn',:method => :create %></a>
-      <%end%>
-    </div><!-- /.navbar-collapse -->
+<div class="row">
+    <div class="jumbotron text-center">
+      <h1>Olá <b><%=@current_user.name%></b></h1>
+  </div>
+</div>

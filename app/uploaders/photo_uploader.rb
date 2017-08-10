@@ -1,6 +1,4 @@
-# app/uploaders/avatar_uploader.rb
-
-class LogoUploader < CarrierWave::Uploader::Base
+class PhotoUploader < CarrierWave::Uploader::Base
 
   include Cloudinary::CarrierWave
 
