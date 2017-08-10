@@ -1,6 +1,6 @@
 <%= simple_form_for @proposal do |f| %>
   <%= f.input :message, :input_html => {:style => 'width: 500px', maxlength: "100"} %>
-  <%= f.association :desire, include_blank: false, :input_html => {:style => 'width: 500px', maxlength: "100"}%>
+  <%= f.hidden_field :desire_id, :value => @desire.id %>
   <label for="">Imagens da Proposta</label><br>
   <%= f.file_field :img1 %><br>
   <%= f.file_field :img2 %><br>

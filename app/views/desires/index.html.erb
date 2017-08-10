@@ -14,8 +14,7 @@
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:action) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:status) %></th>
-      <th><%= model_class.human_attribute_name(:company_id) %></th>
+      <th><%= model_class.human_attribute_name(:logo) %></th>
       <th><%= model_class.human_attribute_name(:img1) %></th>
       <th><%= model_class.human_attribute_name(:img2) %></th>
       <th><%= model_class.human_attribute_name(:img3) %></th>
@@ -23,14 +22,13 @@
     </tr>
   </thead>
   <tbody>
-    <% @desires.each do |desire| %>
+    <% @desires.each do |desire| %><% @pass = desire.id%>
       <tr>
         <td><%= link_to desire.id, desire_path(desire) %></td>
         <td><%= desire.title %></td>
         <td><%= desire.action %></td>
         <td><%= desire.description %></td>
-        <td><%= desire.status %></td>
-        <td><%= desire.company.name %></td>
+        <td><%= image_tag(desire.company.logo_url(:thumbnail), :alt => "Imagem") %></td>
         <td><%= image_tag(desire.img1_url(:thumbnail), :alt => "Imagem") %></td>
         <td><%= image_tag(desire.img2_url(:thumbnail), :alt => "Imagem") %></td>
         <td><%= image_tag(desire.img3_url(:thumbnail), :alt => "Imagem") %></td>
@@ -44,6 +42,9 @@
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
+          <% if current_user.kind =="manager" %>
+            <button class="btn"><%= link_to 'Enviar Proposta', :controller => "proposals", :action => "new", :id => @pass%></button>
+          <% end %>
         </td>
       </tr>
     <% end %>

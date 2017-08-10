@@ -29,12 +29,11 @@ ActiveRecord::Schema.define(version: 20170806025937) do
     t.string   "title"
     t.string   "action"
     t.text     "description"
-    t.string   "status",      default: "Em Análise"
     t.integer  "user_id"
     t.integer  "company_id"
-    t.string   "img1",        default: "Não Enviada"
-    t.string   "img2",        default: "Não Enviada"
-    t.string   "img3",        default: "Não Enviada"
+    t.string   "img1",        default: "Nao_Enviada"
+    t.string   "img2",        default: "Nao_Enviada"
+    t.string   "img3",        default: "Nao_Enviada"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.index ["company_id"], name: "index_desires_on_company_id", using: :btree
@@ -46,12 +45,12 @@ ActiveRecord::Schema.define(version: 20170806025937) do
     t.string   "status",     default: "Em Análise"
     t.text     "notes"
     t.integer  "desire_id"
-    t.string   "img1"
-    t.string   "img2"
-    t.string   "img3"
+    t.string   "img1",       default: "Nao_Enviada"
+    t.string   "img2",       default: "Nao_Enviada"
+    t.string   "img3",       default: "Nao_Enviada"
     t.integer  "user_id"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.index ["desire_id"], name: "index_proposals_on_desire_id", using: :btree
     t.index ["user_id"], name: "index_proposals_on_user_id", using: :btree
   end

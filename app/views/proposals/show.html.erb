@@ -11,15 +11,15 @@
   <dt><strong><%= model_class.human_attribute_name(:notes) %>:</strong></dt>
   <dd><%= @proposal.notes %></dd>
   <dt><strong><%= model_class.human_attribute_name(:desire_id) %>:</strong></dt>
-  <dd><%= @proposal.desire_id %></dd>
+  <dd><%= @proposal.desire.title %></dd>
   <dt><strong><%= model_class.human_attribute_name(:img1) %>:</strong></dt>
-  <dd><%= @proposal.img1 %></dd>
+  <dd><%= image_tag(@proposal.img1_url(:thumbnail), :alt => "Imagem") %></dd>
   <dt><strong><%= model_class.human_attribute_name(:img2) %>:</strong></dt>
-  <dd><%= @proposal.img2 %></dd>
+  <dd><%= image_tag(@proposal.img2_url(:thumbnail), :alt => "Imagem") %></dd>
   <dt><strong><%= model_class.human_attribute_name(:img3) %>:</strong></dt>
-  <dd><%= @proposal.img3 %></dd>
+  <dd><%= image_tag(@proposal.img3_url(:thumbnail), :alt => "Imagem") %></dd>
   <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
-  <dd><%= @proposal.user_id %></dd>
+  <dd><%= @proposal.user.name %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

@@ -2,4 +2,15 @@
 <div class="page-header">
   <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
 </div>
-<%= render :partial => 'form' %>
+<%= simple_form_for @proposal do |f| %>
+  <%= f.input :message, :input_html => {:style => 'width: 500px', maxlength: "100"} %>
+  <%= f.association :desire, :collection => Desire.order('created_at DESC'), :input_html => {:style => 'width: 500px'}, include_blank: false %>
+  <label for="">Imagens da Proposta</label><br>
+  <%= f.file_field :img1 %><br>
+  <%= f.file_field :img2 %><br>
+  <%= f.file_field :img3 %><br>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                proposals_path, :class => 'btn btn-default' %>
+<% end %>

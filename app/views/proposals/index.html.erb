@@ -16,8 +16,8 @@
       <th><%= model_class.human_attribute_name(:img1) %></th>
       <th><%= model_class.human_attribute_name(:img2) %></th>
       <th><%= model_class.human_attribute_name(:img3) %></th>
+      <!-- <th><%= model_class.human_attribute_name(:company_logo) %></th> -->
       <th><%= model_class.human_attribute_name(:user_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -28,12 +28,12 @@
         <td><%= proposal.message %></td>
         <td><%= proposal.status %></td>
         <td><%= proposal.notes %></td>
-        <td><%= proposal.desire_id %></td>
-        <td><%= proposal.img1 %></td>
-        <td><%= proposal.img2 %></td>
-        <td><%= proposal.img3 %></td>
-        <td><%= proposal.user_id %></td>
-        <td><%=l proposal.created_at %></td>
+        <td><%= proposal.desire.title %></td>
+        <td><%= image_tag(proposal.img1_url(:thumbnail), :alt => "Imagem") %></td>
+        <td><%= image_tag(proposal.img2_url(:thumbnail), :alt => "Imagem") %></td>
+        <td><%= image_tag(proposal.img3_url(:thumbnail), :alt => "Imagem") %></td>
+        <!-- <td><%= image_tag(proposal.desire.company.logo_url(:thumbnail), :alt => "Logo") %></td> -->
+        <td><%= proposal.user.name %></td>
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show")),
                       proposal_path(proposal), :class => 'btn btn-default btn-xs' %>
@@ -50,6 +50,6 @@
   </tbody>
 </table>
 <% end %>
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<!-- <%= link_to t('.new', :default => t("helpers.links.new")),
             new_proposal_path,
-            :class => 'btn btn-primary' %>
+            :class => 'btn btn-primary' %> -->

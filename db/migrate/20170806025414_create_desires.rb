@@ -4,7 +4,7 @@ class CreateDesires < ActiveRecord::Migration[5.0]
       t.string :title
       t.string :action
       t.text :description
-      t.string :status, default: "Em Análise"
+      #t.string :status, default: "Em Análise"
       t.references :user, foreign_key: true
       t.references :company, foreign_key: true
       t.string :img1, default: "Nao_Enviada"

@@ -2,15 +2,20 @@ class ProposalsController < ApplicationController
   before_action :set_proposal, only: [:edit, :update, :show, :destroy]
 
 	def new
-		@proposal = Proposal.new
+    if current_user.kind =="manager"
+  		@proposal = Proposal.new
+      @desire =  Desire.find(params[:id])
+    else
+      redirect_to proposals_path, alert: "Proposata Deletada"
+    end
 	end
 
 	def create
-    desire = params[:proposal][:desire_id]
-    user = Desire.find(desire)
-    params[:proposal][:user_id] = user.user_id
+    #binding.pry
+    id = params[:proposal][:desire_id]
+    desire = Desire.find(id)
+    params[:proposal][:user_id] = desire.user_id
 		@proposal = Proposal.create(proposal_params)
-    binding.pry
     #@proposal(:desire_id)
 		respond_with @proposal
 	end
@@ -26,8 +31,12 @@ class ProposalsController < ApplicationController
 
 
 	def index
-    @proposals = Proposal.where(user_id: current_user.id)
-		#@proposals = Proposal.all.order(:created_at)
+    if current_user.kind == "client"
+      @proposals = Proposal.where(user_id: current_user.id)
+    else
+      @proposals = Proposal.paginate(:page => params[:page])
+                                     .order(created_at: :asc)
+    end
 		#  @proposals = Proposal.paginate(:page => params[:page])
     #                           		.order(created_at: :asc)
 	end
@@ -45,6 +54,6 @@ class ProposalsController < ApplicationController
 	end
 
 	def proposal_params
-    params.require(:proposal).permit(:message, :status ,:notes, :proposal_id, :user_id, :img1, :img2, :img3)
+    params.require(:proposal).permit(:message, :status ,:notes, :proposal_id, :desire_id, :user_id, :img1, :img2, :img3)
 	end
 end
